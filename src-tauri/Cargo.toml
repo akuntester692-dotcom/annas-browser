@@ -1,11 +1,18 @@
 [package]
-name="annas-browser"
-version="2.1.0"
-edition="2021"
+name = "annas-browser"
+version = "1.0.0"
+description = "Annas Browser"
+authors = ["you"]
+edition = "2021"
+
 [build-dependencies]
-tauri-build="2"
+tauri-build = { version = "2", features = [] }
+
 [dependencies]
-tauri={version="2.11.1"}
-tauri-plugin-shell="2.3.5"
-serde={version="1",features=["derive"]}
-serde_json="1"
+tauri = { version = "2", features = ["protocol-asset"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+[features]
+default = [ "custom-protocol" ]
+custom-protocol = [ "tauri/custom-protocol" ]
