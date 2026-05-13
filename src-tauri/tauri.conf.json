@@ -1,25 +1,57 @@
 {
-  "$schema": "https://schema.tauri.app/config/2",
-  "productName": "Annas Browser",
-  "version": "2.1.0",
-  "identifier": "com.annas.browser",
   "build": {
-    "frontendDist": "../dist"
+    "beforeDevCommand": "",
+    "beforeBuildCommand": "",
+    "devPath": "../dist",
+    "distDir": "../dist"
   },
-  "app": {
+  "package": {
+    "productName": "Annas Browser",
+    "version": "1.0.0"
+  },
+  "tauri": {
+    "allowlist": {
+      "all": true
+    },
+    "bundle": {
+      "active": true,
+      "category": "DeveloperTool",
+      "copyright": "",
+      "deb": {
+        "depends": []
+      },
+      "externalBin": [],
+      "icon": [],
+      "identifier": "com.annas.browser",
+      "longDescription": "",
+      "macOS": {
+        "entitlements": null,
+        "exceptionDomain": "",
+        "frameworks": [],
+        "providerShortName": null,
+        "signingIdentity": null
+      },
+      "resources": [],
+      "shortDescription": "",
+      "targets": "all",
+      "windows": {
+        "certificateThumbprint": null,
+        "digestAlgorithm": "sha256",
+        "timestampUrl": ""
+      }
+    },
+    "security": {
+      "csp": null
+    },
     "windows": [
       {
+        "fullscreen": false,
+        "height": 800,
+        "resizable": true,
         "title": "Annas Browser",
         "width": 1280,
-        "height": 800
+        "url": "index.html"
       }
-    ]
-  },
-  "bundle": {
-    "active": true,
-    "targets": "all",
-    "icon": [
-      "icons/icon"
     ]
   }
 }
