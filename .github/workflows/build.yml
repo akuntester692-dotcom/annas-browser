@@ -1,1 +1,41 @@
+name: Build Annas Browser
+on:
+  workflow_dispatch:
 
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Rust setup
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          cache: true
+
+      - name: Rust cache
+        uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri
+
+      - name: Build with Tauri
+        uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          projectPath: ./src-tauri
+          args: --bundles msi
+
+      - name: Upload exe
+        uses: actions/upload-artifact@v4
+        with:
+          name: Annas-Browser-exe
+          path: src-tauri/target/release/*.exe
+
+      - name: Upload msi
+        uses: actions/upload-artifact@v4
+        with:
+          name: Annas-Browser-msi
+          path: src-tauri/target/release/bundle/msi/*.msi
